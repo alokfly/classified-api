@@ -4,6 +4,7 @@ const connect = require("./config/db");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const adminRouter = require("./routes/AdminRoutes");
+const userRouter = require("./routes/UserRoutes");
 const adsRouter = require("./routes/AddRoutes");
 const categoryRouter = require("./routes/CategoryRoutes");
 
@@ -28,6 +29,7 @@ app.use(function (req, res, next) {
 connect();
 app.use(bodyParser.json());
 app.use("/", adminRouter);
+app.use("/", userRouter);
 app.use("/", adsRouter);
 app.use("/", categoryRouter);
 
