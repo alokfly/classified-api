@@ -118,7 +118,7 @@ module.exports.deleteAd = async (req, res) => {
 
 module.exports.myAds = async (req, res) => {
   try {
-    const ads = await Add.findById({ userId: ObjectId(req.user) });
+    const ads = await Add.findById({ userId: req.user });
     return res.status(200).json(ads);
   } catch (error) {
     console.log(error);
