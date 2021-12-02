@@ -90,3 +90,89 @@ module.exports.login = async (req, res) => {
     return res.status(500).json({ errors: error });
   }
 };
+
+module.exports.loggedUserDetail = async (req, res) => {
+  try {
+    const loggedUserDetail = await User.findById({ _id: ObjectId(req.user) });
+    res.status(200).json(loggedUserDetail);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports.editUser = async (req, res) => {
+  const {
+    username,
+    email,
+    phone,
+    aboutUs,
+    address,
+    name,
+    website,
+    facebook,
+    instagram,
+    currentPassword,
+    newPassword,
+    currentImage,
+  } = req.body;
+  const userImage = req.file ? req.file.path : currentImage;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  try {
+    const checkUser = await User.findOne({ email });
+    if (checkUser) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: "Email is already taken" }] });
+    }
+    try {
+      if (currentPassword != null && newPassword != null) {
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(newPassword, salt);
+        const user = await User.findOneAndUpdate(
+          { _id: ObjectId(req.user) },
+          {
+            username,
+            email,
+            phone,
+            aboutUs,
+            address,
+            name,
+            website,
+            facebook,
+            instagram,
+            image: userImage,
+            password: hash,
+          }
+        );
+        return res.status(200).json({ msg: "Your password has been updated" });
+      } else {
+        const user = await User.findByIdAndUpdate(
+          { _id: ObjectId(req.user) },
+          {
+            username,
+            email,
+            phone,
+            aboutUs,
+            address,
+            name,
+            website,
+            facebook,
+            instagram,
+            image: userImage,
+          }
+        );
+        return res.status(200).json({
+          msg: "Your Profile edited successfully",
+          user,
+        });
+      }
+    } catch (error) {
+      return res.status(500).json({ errors: error });
+    }
+  } catch (error) {
+    return res.status(500).json({ errors: error });
+  }
+};

@@ -17,9 +17,30 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    aboutUs: {
+      type: String,
+    },
+    address: {
+      type: String,
+    },
+    name: {
+      type: String,
+    },
+    website: {
+      type: String,
+    },
+    facebook: {
+      type: String,
+    },
+    instagram: {
+      type: String,
+    },
     status: {
       type: Number,
       default: 0,
+    },
+    image: {
+      type: String,
     },
   },
   { timestamps: true }
