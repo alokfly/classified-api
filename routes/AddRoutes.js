@@ -31,7 +31,7 @@ router.post("/editAd/:id", upload.single("myField"), auth, editAd);
 router.get("/deleteAd/:id", deleteAd);
 router.get("/myAds", auth, myAds);
 router.get("/pendingAds", auth, pendingAds);
-router.get("/likeAd", auth, likeAd);
+router.post("/likeAd", auth, likeAd);
 router.get("/getLikedAds", auth, getLikedAds);
 
 module.exports = router;
