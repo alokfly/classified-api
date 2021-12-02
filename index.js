@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const adminRouter = require("./routes/AdminRoutes");
 const adsRouter = require("./routes/AddRoutes");
+const categoryRouter = require("./routes/CategoryRoutes");
 
 require("dotenv").config();
 const app = express();
@@ -29,6 +30,7 @@ connect();
 app.use(bodyParser.json());
 app.use("/", adminRouter);
 app.use("/", adsRouter);
+app.use("/", categoryRouter);
 
 const PORT = process.env.PORT || 5000;
 
