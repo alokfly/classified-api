@@ -73,6 +73,12 @@ const addSchema = new Schema(
       type: Number,
       default: 2,
     },
+    like: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "user",
+      },
+    ],
     image: {
       type: String,
       required: true,

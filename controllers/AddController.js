@@ -136,3 +136,34 @@ module.exports.pendingAds = async (req, res) => {
     console.log(error);
   }
 };
+
+module.exports.likeAd = async (req, res) => {
+  const { addId } = req.body;
+  await Add.findByIdAndUpdate(
+    { _id: ObjectId(addId) },
+    {
+      $push: { like: req.user },
+    },
+    {
+      new: true,
+    }
+  ).exec((err, result) => {
+    if (err) {
+      console;
+      return res.status(422).json(err);
+    } else {
+      res.json(result);
+    }
+  });
+};
+
+module.exports.getLikedAds = async (req, res) => {
+  try {
+    const getLikedAds = await Add.find({
+      like: { $in: ObjectId(req.user) },
+    });
+    return res.status(201).json(getLikedAds);
+  } catch (error) {
+    console.log(error);
+  }
+};
