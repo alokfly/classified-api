@@ -19,11 +19,13 @@ const {
   getAdDetail,
   editAd,
   deleteAd,
+  myAds,
 } = require("../controllers/AddController");
 
 router.post("/addAd", upload.single("myField"), auth, addAd);
 router.get("/getAdDetail", getAdDetail);
-router.post("/editAd/:id", upload.single("myField"), editAd);
+router.post("/editAd/:id", upload.single("myField"), auth, editAd);
 router.get("/deleteAd/:id", deleteAd);
+router.get("/myAds", auth, myAds);
 
 module.exports = router;
