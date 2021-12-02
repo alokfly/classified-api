@@ -1,5 +1,6 @@
 const app = require("express");
 const router = app.Router();
+const auth = require("../utils/auth");
 
 var multer = require("multer");
 var storage = multer.diskStorage({
@@ -20,7 +21,7 @@ const {
   deleteAd,
 } = require("../controllers/AddController");
 
-router.post("/addAd", upload.single("myField"), addAd);
+router.post("/addAd", upload.single("myField"), auth, addAd);
 router.get("/getAdDetail", getAdDetail);
 router.post("/editAd/:id", upload.single("myField"), editAd);
 router.get("/deleteAd/:id", deleteAd);
