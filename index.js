@@ -13,7 +13,6 @@ const app = express();
 app.use(cors());
 app.use(cookieParser());
 
-app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use("/public", express.static("public"));
 
