@@ -223,3 +223,31 @@ module.exports.getAllAds = async (req, res) => {
     console.log(error);
   }
 };
+
+module.exports.approveAd = async (req, res) => {
+  try {
+    const approveStatus = await Add.findByIdAndUpdate(
+      { _id: ObjectId(req.params.id) },
+      {
+        status: 1,
+      }
+    );
+    res.status(200).json({ msg: "Ad successfully approved" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports.rejectAd = async (req, res) => {
+  try {
+    const approveStatus = await Add.findByIdAndUpdate(
+      { _id: ObjectId(req.params.id) },
+      {
+        status: 0,
+      }
+    );
+    res.status(200).json({ msg: "Ad successfully rejected" });
+  } catch (error) {
+    console.log(error);
+  }
+};
