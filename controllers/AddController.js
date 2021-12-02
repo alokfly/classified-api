@@ -124,3 +124,15 @@ module.exports.myAds = async (req, res) => {
     console.log(error);
   }
 };
+
+module.exports.pendingAds = async (req, res) => {
+  try {
+    const pendingAds = await Add.find({
+      userId: ObjectId(req.user),
+      status: 2,
+    });
+    return res.status(200).json(pendingAds);
+  } catch (error) {
+    console.log(error);
+  }
+};

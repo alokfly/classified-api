@@ -20,6 +20,7 @@ const {
   editAd,
   deleteAd,
   myAds,
+  pendingAds,
 } = require("../controllers/AddController");
 
 router.post("/addAd", upload.single("myField"), auth, addAd);
@@ -27,5 +28,6 @@ router.get("/getAdDetail", getAdDetail);
 router.post("/editAd/:id", upload.single("myField"), auth, editAd);
 router.get("/deleteAd/:id", deleteAd);
 router.get("/myAds", auth, myAds);
+router.get("/pendingAds", auth, pendingAds);
 
 module.exports = router;
