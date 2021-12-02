@@ -23,6 +23,9 @@ const {
   pendingAds,
   likeAd,
   getLikedAds,
+  hideAd,
+  getHiddenAds,
+  getAllAds,
 } = require("../controllers/AddController");
 
 router.post("/addAd", upload.single("myField"), auth, addAd);
@@ -33,5 +36,8 @@ router.get("/myAds", auth, myAds);
 router.get("/pendingAds", auth, pendingAds);
 router.post("/likeAd", auth, likeAd);
 router.get("/getLikedAds", auth, getLikedAds);
+router.post("/hideAd", auth, hideAd);
+router.get("/getHiddenAds", auth, getHiddenAds);
+router.get("/getAllAds", auth, getAllAds);
 
 module.exports = router;

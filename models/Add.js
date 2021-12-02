@@ -79,6 +79,12 @@ const addSchema = new Schema(
         ref: "user",
       },
     ],
+    adHiddenFromUser: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "user",
+      },
+    ],
     image: {
       type: String,
       required: true,

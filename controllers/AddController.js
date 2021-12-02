@@ -167,3 +167,59 @@ module.exports.getLikedAds = async (req, res) => {
     console.log(error);
   }
 };
+
+module.exports.hideAd = async (req, res) => {
+  const { addId } = req.body;
+  await Add.findByIdAndUpdate(
+    { _id: ObjectId(addId) },
+    {
+      $push: { adHiddenFromUser: req.user },
+    },
+    {
+      new: true,
+    }
+  ).exec((err, result) => {
+    if (err) {
+      console;
+      return res.status(422).json(err);
+    } else {
+      res.json(result);
+    }
+  });
+};
+
+module.exports.getHiddenAds = async (req, res) => {
+  try {
+    const getHiddenAds = await Add.find({
+      adHiddenFromUser: { $in: ObjectId(req.user) },
+    });
+    return res.status(201).json(getHiddenAds);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports.getAllAds = async (req, res) => {
+  try {
+    const getAllAds = await Add.aggregate([
+      {
+        $lookup: {
+          from: "users",
+          localField: "adHiddenFromUser",
+          foreignField: "_id",
+          as: "fromItems",
+        },
+      },
+      {
+        $match: {
+          $expr: {
+            $eq: [{ $size: "$fromItems" }, 0],
+          },
+        },
+      },
+    ]);
+    return res.status(201).json(getAllAds);
+  } catch (error) {
+    console.log(error);
+  }
+};
