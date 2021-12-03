@@ -27,6 +27,6 @@ router.post("/register", registerValiations, register);
 router.post("/login", loginValiations, login);
 router.get("/loggedUserDetail", auth, loggedUserDetail);
 router.post("/editUser", upload.single("myField"), auth, editUser);
-router.post("/showAllUser", showAllUser);
+router.get("/showAllUser", showAllUser);
 
 module.exports = router;
