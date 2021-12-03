@@ -252,8 +252,3 @@ module.exports.rejectAd = async (req, res) => {
     console.log(error);
   }
 };
-
-cron.schedule("* * * * * *", async () => {
-  const getData = await Add.find({});
-  console.log(new Date().toLocaleDateString());
-});
