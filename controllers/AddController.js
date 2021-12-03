@@ -257,3 +257,52 @@ module.exports.rejectAd = async (req, res) => {
     console.log(error);
   }
 };
+
+cron.schedule("00 00 12 * * 0-6", async () => {
+  const getData = await Add.find({});
+  getData.forEach(async (item) => {
+    if (item) {
+      if (item.expiryDate === item.date) {
+        const expiryAd = await ExpiryAd.create({
+          adId: item._id,
+          userId: item.userId,
+          title: item.title,
+          description: item.description,
+          category: item.category,
+          subCategory: item.subCategory,
+          adType: item.adType,
+          brandName: item.brandName,
+          yearOfRegistration: item.yearOfRegistration,
+          transmission: item.transmission,
+          features: item.features,
+          price: item.price,
+          negotitate: item.negotitate,
+          mobileNumber: item.mobileNumber,
+          expiryDate: item.expiryDate,
+          city: item.city,
+          location: item.location,
+          tag: item.tag,
+          adsPremium: item.adsPremium,
+          image: item.image,
+        });
+        const removeAd = await Add.findByIdAndRemove({
+          _id: ObjectId(item._id),
+        });
+        console.log("add remove done");
+      } else {
+        console.log("date not matched");
+      }
+    } else {
+      console.log("No Expiry Ad");
+    }
+  });
+});
+
+module.exports.getExpiryAds = async (req, res) => {
+  try {
+    const getAds = await ExpiryAd.find({ userId: req.user });
+    return res.status(200).json(getAds);
+  } catch (error) {
+    console.log(error);
+  }
+};
