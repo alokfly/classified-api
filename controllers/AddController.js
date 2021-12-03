@@ -5,6 +5,9 @@ const cron = require("node-cron");
 
 module.exports.addAd = async (req, res) => {
   const addImage = req.file ? req.file.path : null;
+  const d = new Date();
+  d.setMonth(d.getMonth() + 2);
+  const date = d.toLocaleDateString();
   const {
     title,
     description,
@@ -36,6 +39,7 @@ module.exports.addAd = async (req, res) => {
       transmission,
       features,
       price,
+      expiryDate: date,
       negotitate,
       mobileNumber,
       city,

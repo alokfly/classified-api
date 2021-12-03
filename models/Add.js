@@ -77,6 +77,9 @@ const addSchema = new Schema(
       type: String,
       default: new Date().toLocaleDateString(),
     },
+    expiryDate: {
+      type: String,
+    },
     like: [
       {
         type: Schema.Types.ObjectId,
