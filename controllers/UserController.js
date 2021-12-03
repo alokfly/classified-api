@@ -176,3 +176,12 @@ module.exports.editUser = async (req, res) => {
     return res.status(500).json({ errors: error });
   }
 };
+
+module.exports.showAllUser = async (req, res) => {
+  try {
+    const getAllUser = await User.find({});
+    return res.status(200).json(getAllUser);
+  } catch (error) {
+    console.log(error);
+  }
+};

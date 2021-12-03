@@ -1,9 +1,10 @@
 const Category = require("../models/Category");
 const SubCategory = require("../models/SubCategory");
+
 var ObjectId = require("mongodb").ObjectID;
 
 module.exports.addCategory = async (req, res) => {
-  const catImage = req.file ? req.file.path : null;
+  const catImage = req.file ? req.file.filename : null;
   const { name } = req.body;
   try {
     const addCategory = await Category.create({
