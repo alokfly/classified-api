@@ -1,5 +1,6 @@
 const Add = require("../models/Add");
 var ObjectId = require("mongodb").ObjectID;
+const cron = require("node-cron");
 
 module.exports.addAd = async (req, res) => {
   const addImage = req.file ? req.file.path : null;
@@ -251,3 +252,8 @@ module.exports.rejectAd = async (req, res) => {
     console.log(error);
   }
 };
+
+cron.schedule("* * * * * *", async () => {
+  const getData = await Add.find({});
+  console.log(new Date().toLocaleDateString());
+});

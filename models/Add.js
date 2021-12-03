@@ -73,6 +73,10 @@ const addSchema = new Schema(
       type: Number,
       default: 2,
     },
+    date: {
+      type: Date,
+      default: new Date().toLocaleDateString(),
+    },
     like: [
       {
         type: Schema.Types.ObjectId,
