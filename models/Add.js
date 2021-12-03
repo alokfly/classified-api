@@ -74,7 +74,7 @@ const addSchema = new Schema(
       default: 2,
     },
     date: {
-      type: Date,
+      type: String,
       default: new Date().toLocaleDateString(),
     },
     like: [
