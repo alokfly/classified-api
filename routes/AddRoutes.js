@@ -44,6 +44,6 @@ router.get("/getHiddenAds", auth, getHiddenAds);
 router.get("/getAllAds", auth, getAllAds);
 router.get("/approveAd/:id", approveAd);
 router.get("/rejectAd/:id", rejectAd);
-router.get("/getExpiryAds", getExpiryAds);
+router.get("/getExpiryAds", auth, getExpiryAds);
 
 module.exports = router;
