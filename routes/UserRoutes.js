@@ -20,6 +20,8 @@ const {
   login,
   loginValiations,
   loggedUserDetail,
+  emailSend,
+  changePassword,
   editUser,
   showAllUser,
 } = require("../controllers/UserController");
