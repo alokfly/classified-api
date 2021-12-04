@@ -26,21 +26,6 @@ const addSchema = new Schema(
       type: String,
       required: true,
     },
-    brandName: {
-      type: String,
-    },
-    yearOfRegistration: {
-      type: String,
-      required: true,
-    },
-    transmission: {
-      type: String,
-      required: true,
-    },
-    features: {
-      type: String,
-      required: true,
-    },
     price: {
       type: String,
       required: true,
@@ -53,11 +38,6 @@ const addSchema = new Schema(
       type: String,
       required: true,
     },
-    city: {
-      type: String,
-      required: true,
-    },
-
     location: {
       type: String,
       required: true,
