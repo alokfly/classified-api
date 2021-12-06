@@ -7,6 +7,7 @@ const adminRouter = require("./routes/AdminRoutes");
 const userRouter = require("./routes/UserRoutes");
 const adsRouter = require("./routes/AddRoutes");
 const categoryRouter = require("./routes/CategoryRoutes");
+const packageRouter = require("./routes/PackageRoutes");
 
 require("dotenv").config();
 const app = express();
@@ -32,6 +33,7 @@ app.use("/", adminRouter);
 app.use("/", userRouter);
 app.use("/", adsRouter);
 app.use("/", categoryRouter);
+app.use("/", packageRouter);
 
 const PORT = process.env.PORT || 5000;
 
