@@ -106,3 +106,14 @@ module.exports.deleteSubCategory = async (req, res) => {
     console.log(error);
   }
 };
+
+module.exports.getSubCategoryByCategoryId = async (req, res) => {
+  try {
+    const getSubCategoryByCategoryId = await SubCategory.find({
+      parentCategory: ObjectId(req.params.id),
+    });
+    res.status(200).json(getSubCategoryByCategoryId);
+  } catch (error) {
+    console.log(error);
+  }
+};

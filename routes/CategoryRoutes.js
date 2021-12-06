@@ -23,6 +23,7 @@ const {
   getSubCategory,
   editSubCategory,
   deleteSubCategory,
+  getSubCategoryByCategoryId,
 } = require("../controllers/CategoryController");
 
 router.post("/addCategory", upload.single("myField"), addCategory);
@@ -32,6 +33,7 @@ router.get("/deleteCategory/:id", deleteCategory);
 
 router.post("/addSubCategory", upload.single("myField"), addSubCategory);
 router.get("/getSubCategory", getSubCategory);
+router.get("/getSubCategoryByCategoryId/:id", getSubCategoryByCategoryId);
 router.post("/editSubCategory/:id", upload.single("myField"), editSubCategory);
 router.get("/deleteSubCategory/:id", deleteSubCategory);
 
