@@ -132,11 +132,13 @@ module.exports.changePassword = async (req, res) => {
       return res.status(400).json({ errors: [{ msg: "Token expire" }] });
     } else {
       let user = await User.findOne({ email: req.body.email });
-      const salt = await bcrypt.genSalt(10);
-      const hash = await bcrypt.hash(req.body.password, salt);
-      user.password = hash;
-      user.save();
-      return res.status(200).json({ msg: "Password changes successfully" });
+      if (user != null) {
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(req.body.password, salt);
+        user.password = hash;
+        user.save();
+        return res.status(200).json({ msg: "Password changes successfully" });
+      }
     }
   } else {
     return res.status(400).json({ errors: [{ msg: "Token Expired" }] });
