@@ -26,7 +26,6 @@ app.use(function (req, res, next) {
   );
   next();
 });
-
 connect();
 app.use(bodyParser.json());
 app.use("/", adminRouter);
