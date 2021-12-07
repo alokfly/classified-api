@@ -275,7 +275,7 @@ cron.schedule("00 00 12 * * 0-6", async () => {
 
 module.exports.getAdsBySubCategory = async (req, res) => {
   try {
-    const getAds = await Add.find({ subCategory: req.params.name });
+    const getAds = await Add.find({});
     return res.status(200).json(getAds);
   } catch (error) {
     console.log(error);
