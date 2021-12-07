@@ -13,6 +13,10 @@ const packageSchema = new Schema(
       type: String,
       required: true,
     },
+    title: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

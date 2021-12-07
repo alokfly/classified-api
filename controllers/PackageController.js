@@ -2,13 +2,16 @@ var ObjectId = require("mongodb").ObjectID;
 const Package = require("../models/Package");
 
 module.exports.addPackage = async (req, res) => {
-  const { start_date, end_date, price } = req.body;
+  const { start_date, end_date, price, title } = req.body;
   try {
     if (start_date === "") {
       res.status(400).json({ msg: "start date is required" });
     }
     if (end_date === "") {
       res.status(400).json({ msg: "end date is required" });
+    }
+    if (title === "") {
+      res.status(400).json({ msg: "title is required" });
     }
     if (price === "") {
       res.status(400).json({ msg: "price is required" });
@@ -17,6 +20,7 @@ module.exports.addPackage = async (req, res) => {
         start_date,
         end_date,
         price,
+        title,
       });
       res.status(200).json({ msg: "Package successfully submitted" });
     }
@@ -37,13 +41,16 @@ module.exports.getPackage = async (req, res) => {
 };
 
 module.exports.updatePackage = async (req, res) => {
-  const { start_date, end_date, price } = req.body;
+  const { start_date, end_date, price, title } = req.body;
   try {
     if (start_date === "") {
       res.status(400).json({ msg: "start date is required" });
     }
     if (end_date === "") {
       res.status(400).json({ msg: "end date is required" });
+    }
+    if (title === "") {
+      res.status(400).json({ msg: "title is required" });
     }
     if (price === "") {
       res.status(400).json({ msg: "price is required" });
@@ -54,6 +61,7 @@ module.exports.updatePackage = async (req, res) => {
           start_date,
           end_date,
           price,
+          title,
         }
       );
       res.status(200).json({ msg: "Package successfully Updated" });

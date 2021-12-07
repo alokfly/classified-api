@@ -273,6 +273,15 @@ cron.schedule("00 00 12 * * 0-6", async () => {
   });
 });
 
+module.exports.getAdsBySubCategory = async (req, res) => {
+  try {
+    const getAds = await Add.find({ subCategory: req.params.name });
+    return res.status(200).json(getAds);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports.getExpiryAds = async (req, res) => {
   try {
     const getAds = await ExpiryAd.find({ userId: req.user });
