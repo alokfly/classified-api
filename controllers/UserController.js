@@ -78,7 +78,10 @@ module.exports.login = async (req, res) => {
         const token = createToken(user);
         return res
           .status(200)
-          .json({ msg: "You have loggedin successfully", token });
+          .json({ msg: "You have loggedin successfully", 
+            token,
+            id: user._id
+             });
       } else {
         return res
           .status(401)
@@ -255,5 +258,20 @@ module.exports.showAllUser = async (req, res) => {
     return res.status(200).json(getAllUser);
   } catch (error) {
     console.log(error);
+  }
+};
+
+module.exports.userFindById = async (req, res) => {
+  try {
+    const findUser = await User.findById({
+      _id: ObjectId(req.params.id),
+    });
+    return res.status(200).json({
+      name: findUser.name,
+      image: findUser.image
+    }
+   );
+  } catch (error) {
+    return res.status(500).json({ msg: error });
   }
 };

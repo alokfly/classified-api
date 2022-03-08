@@ -2,6 +2,7 @@ const app = require("express");
 const router = app.Router();
 const auth = require("../utils/auth");
 
+
 var multer = require("multer");
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -24,6 +25,7 @@ const {
   changePassword,
   editUser,
   showAllUser,
+  userFindById
 } = require("../controllers/UserController");
 router.post("/register", registerValiations, register);
 router.post("/login", loginValiations, login);
@@ -32,5 +34,6 @@ router.post("/email-send", emailSend);
 router.post("/change-password", changePassword);
 router.post("/editUser", upload.single("myField"), auth, editUser);
 router.get("/showAllUser", showAllUser);
+router.get("/find/userbyid/:id",userFindById);
 
 module.exports = router;
